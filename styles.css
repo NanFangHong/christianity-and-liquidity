@@ -1428,24 +1428,11 @@ p {
     min-height: auto;
   }
 
-  .quick-index a,
-  .benchmark-table span {
+  .quick-index a {
     border-right: 0;
   }
 
-  .benchmark-table span {
-    border-bottom: 1px solid var(--line);
-  }
-
-  .benchmark-table span:last-child {
-    border-bottom: 0;
-  }
-
-  .benchmark-table {
-    border: 0;
-    background: transparent;
-  }
-
+  .benchmark-table,
   .concept-table {
     border: 0;
     background: transparent;
@@ -1456,15 +1443,7 @@ p {
     background: transparent;
   }
 
-  .benchmark-table [role="row"] {
-    display: block;
-    overflow: hidden;
-    margin-bottom: 10px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--cream);
-  }
-
+  .benchmark-table [role="row"],
   .concept-table [role="row"] {
     display: block;
     overflow: hidden;
@@ -1524,22 +1503,45 @@ p {
     text-transform: uppercase;
   }
 
-  .concept-table span {
+  .benchmark-table [role="row"]:not(.table-head) span,
+  .concept-table [role="row"]:not(.table-head) span,
+  .tradition-matrix [role="row"]:not(.table-head) span {
+    display: block;
+    width: 100%;
     border-right: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .benchmark-table [role="row"]:not(.table-head) span,
+  .concept-table [role="row"]:not(.table-head) span {
     border-bottom: 1px solid var(--line);
   }
 
-  .concept-table span:last-child {
-    border-bottom: 0;
-  }
-
-  .tradition-matrix span {
+  .tradition-matrix [role="row"]:not(.table-head) span {
     border-right: 0;
     border-bottom: 1px solid rgba(255, 250, 242, 0.18);
   }
 
-  .tradition-matrix span:last-child {
+  .benchmark-table [role="row"]:not(.table-head) span:last-child,
+  .concept-table [role="row"]:not(.table-head) span:last-child,
+  .tradition-matrix [role="row"]:not(.table-head) span:last-child {
     border-bottom: 0;
+  }
+
+  html[lang="zh-Hans"] .benchmark-table [role="row"]:not(.table-head) span::before,
+  html[lang="zh-Hans"] .concept-table [role="row"]:not(.table-head) span::before,
+  html[lang="zh-Hans"] .tradition-matrix [role="row"]:not(.table-head) span::before {
+    letter-spacing: 0.06em;
+    text-transform: none;
+  }
+
+  .benchmark-table [role="cell"],
+  .concept-table [role="cell"],
+  .tradition-matrix [role="cell"] {
+    display: block;
+    width: 100%;
+    border-right: 0;
+    overflow-wrap: anywhere;
   }
 
   .source-links {
