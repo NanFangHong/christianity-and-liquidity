@@ -4,10 +4,10 @@ function getHeaderOffset() {
 
 let scheduleCurrentNavUpdate = () => {};
 
-function restoreHashPosition() {
-  if (!window.location.hash) return;
+function restoreHashPosition(hash = window.location.hash) {
+  if (!hash) return;
 
-  const target = document.querySelector(window.location.hash);
+  const target = document.querySelector(hash);
   if (!target) return;
 
   const scrollToTarget = () => {
@@ -28,6 +28,7 @@ function restoreHashPosition() {
 window.addEventListener("DOMContentLoaded", () => {
   const segments = Array.from(document.querySelectorAll(".segment"));
   const cards = Array.from(document.querySelectorAll(".resource-card"));
+  const hashLinks = Array.from(document.querySelectorAll("a[href^='#']"));
   const navLinks = Array.from(document.querySelectorAll(".main-nav a[href^='#']"));
   const navSections = navLinks
     .map((link) => document.querySelector(link.getAttribute("href")))
@@ -47,6 +48,22 @@ window.addEventListener("DOMContentLoaded", () => {
 
   for (const segment of segments) {
     segment.addEventListener("click", () => applyFilter(segment.dataset.filter));
+  }
+
+  for (const link of hashLinks) {
+    link.addEventListener("click", (event) => {
+      const hash = link.getAttribute("href");
+      if (!hash || hash === "#") return;
+
+      const target = document.querySelector(hash);
+      if (!target) return;
+
+      event.preventDefault();
+      if (window.location.hash !== hash) {
+        history.pushState(null, "", hash);
+      }
+      restoreHashPosition(hash);
+    });
   }
 
   function updateCurrentNav() {
