@@ -153,10 +153,11 @@ input {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
   align-items: center;
-  gap: clamp(28px, 5vw, 72px);
-  padding: clamp(42px, 7vw, 96px) clamp(18px, 5vw, 72px) clamp(28px, 5vw, 56px);
+  gap: clamp(24px, 4vw, 58px);
+  min-height: calc(100vh - 76px - 54px);
+  padding: clamp(34px, 5vw, 68px) clamp(18px, 5vw, 72px) clamp(24px, 4vw, 42px);
   border-bottom: 1px solid var(--line);
   background:
     linear-gradient(90deg, rgba(247, 241, 232, 0.96), rgba(247, 241, 232, 0.72)),
@@ -194,7 +195,7 @@ h2 {
 h1 {
   margin-bottom: 24px;
   max-width: 780px;
-  font-size: clamp(3.4rem, 8vw, 7.2rem);
+  font-size: clamp(3.35rem, 7vw, 5.85rem);
   line-height: 0.95;
   overflow-wrap: break-word;
 }
@@ -296,13 +297,29 @@ p {
   font-size: 1.08rem;
 }
 
+.care-note {
+  max-width: 780px;
+  margin-top: 18px;
+  padding: 16px 18px;
+  border-left: 4px solid var(--brick);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.98rem;
+}
+
 .thesis-band {
+  background: var(--cream);
+}
+
+.start-band {
   background: var(--cream);
 }
 
 .claim-grid,
 .tradition-grid,
-.resource-grid {
+.resource-grid,
+.plain-grid,
+.guardrail-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
@@ -312,10 +329,56 @@ p {
 .tradition-grid article,
 .resource-card,
 .map-flow article,
-.issue-list article {
+.issue-list article,
+.plain-grid article,
+.guardrail-grid article {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--paper);
+}
+
+.plain-grid article {
+  min-height: 250px;
+  padding: 24px;
+  background: var(--paper-deep);
+}
+
+.plain-grid span {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 42px;
+  border-radius: 50%;
+  color: var(--cream);
+  background: var(--brick);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 800;
+}
+
+.friend-note {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.32fr) minmax(0, 1fr);
+  gap: clamp(20px, 4vw, 44px);
+  align-items: start;
+  margin-top: 16px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--ink);
+}
+
+.friend-note h3 {
+  color: var(--cream);
+}
+
+.friend-note p {
+  margin-bottom: 0;
+  color: rgba(255, 250, 242, 0.78);
+}
+
+.friend-note .eyebrow {
+  color: var(--gold);
 }
 
 .claim-grid article {
@@ -358,6 +421,28 @@ p {
   color: var(--cream);
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 800;
+}
+
+.guardrail-band {
+  background: var(--cream);
+}
+
+.guardrail-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.guardrail-grid article {
+  min-height: 255px;
+  padding: 22px;
+  background: var(--paper);
+}
+
+.guardrail-grid svg {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 34px;
+  color: var(--olive);
+  stroke-width: 2;
 }
 
 .ecumenical-band {
@@ -563,7 +648,8 @@ p {
 
   .hero,
   .split-copy,
-  .issue-band {
+  .issue-band,
+  .friend-note {
     grid-template-columns: 1fr;
   }
 
@@ -571,7 +657,9 @@ p {
   .claim-grid,
   .map-flow,
   .tradition-grid,
-  .resource-grid {
+  .resource-grid,
+  .plain-grid,
+  .guardrail-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -599,6 +687,8 @@ p {
   .map-flow,
   .tradition-grid,
   .resource-grid,
+  .plain-grid,
+  .guardrail-grid,
   .benchmark-table [role="row"],
   .site-footer {
     grid-template-columns: 1fr;
