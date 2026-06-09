@@ -30,6 +30,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const cards = Array.from(document.querySelectorAll(".resource-card"));
   const hashLinks = Array.from(document.querySelectorAll("a[href^='#']"));
   const navLinks = Array.from(document.querySelectorAll(".main-nav a[href^='#']"));
+  const languageToggle = document.querySelector("[data-lang-toggle]");
   const navSections = navLinks
     .map((link) => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
@@ -63,6 +64,18 @@ window.addEventListener("DOMContentLoaded", () => {
         history.pushState(null, "", hash);
       }
       restoreHashPosition(hash);
+    });
+  }
+
+  if (languageToggle) {
+    languageToggle.addEventListener("click", (event) => {
+      if (!window.location.hash) return;
+
+      const href = languageToggle.getAttribute("href");
+      if (!href) return;
+
+      event.preventDefault();
+      window.location.href = `${href}${window.location.hash}`;
     });
   }
 

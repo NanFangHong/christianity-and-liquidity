@@ -15,6 +15,8 @@
     />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#f7f1e8" />
+    <link rel="alternate" hreflang="en" href="./" />
+    <link rel="alternate" hreflang="zh-Hans" href="./zh.html" />
     <link rel="stylesheet" href="./styles.css" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
     <script src="./script.js" defer></script>
@@ -34,9 +36,20 @@
         <a href="#benchmark">Benchmark</a>
         <a href="#research-design">Research</a>
       </nav>
-      <a class="icon-button" href="#research-design" aria-label="Open research design">
-        <i data-lucide="book-open"></i>
-      </a>
+      <div class="header-actions">
+        <a
+          class="lang-toggle"
+          href="./zh.html"
+          data-lang-toggle
+          aria-label="切换到中文版"
+          lang="zh-Hans"
+        >
+          中 / EN
+        </a>
+        <a class="icon-button" href="#research-design" aria-label="Open research design">
+          <i data-lucide="book-open"></i>
+        </a>
+      </div>
     </header>
 
     <main id="top">

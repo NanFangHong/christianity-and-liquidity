@@ -31,6 +31,18 @@ body {
   line-height: 1.65;
 }
 
+html[lang="zh-Hans"] body {
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Microsoft YaHei",
+    sans-serif;
+}
+
 body::selection {
   color: var(--cream);
   background: var(--brick);
@@ -111,6 +123,39 @@ input {
   text-decoration: underline;
   text-underline-offset: 9px;
   text-decoration-thickness: 2px;
+}
+
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-self: end;
+  gap: 8px;
+}
+
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: var(--cream);
+  font-size: 0.84rem;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    background 160ms ease;
+}
+
+.lang-toggle:hover {
+  color: var(--brick);
+  border-color: var(--brick);
+  background: var(--paper);
 }
 
 .icon-button,
@@ -202,12 +247,39 @@ h2 {
   letter-spacing: 0;
 }
 
+html[lang="zh-Hans"] h1,
+html[lang="zh-Hans"] h2,
+html[lang="zh-Hans"] .hero-visual figcaption,
+html[lang="zh-Hans"] .practice-photo figcaption,
+html[lang="zh-Hans"] .working-thesis p,
+html[lang="zh-Hans"] .sample-reading h3,
+html[lang="zh-Hans"] .case-card h3,
+html[lang="zh-Hans"] .proposal-primary h3 {
+  font-family: Georgia, "Songti SC", "STSong", "SimSun", serif;
+}
+
+html[lang="zh-Hans"] .eyebrow,
+html[lang="zh-Hans"] .sample-reading span,
+html[lang="zh-Hans"] .case-card span,
+html[lang="zh-Hans"] .case-lens-grid span,
+html[lang="zh-Hans"] .resource-card span,
+html[lang="zh-Hans"] .issue-list span,
+html[lang="zh-Hans"] .reading-grid span,
+html[lang="zh-Hans"] .proposal-grid span,
+html[lang="zh-Hans"] .evidence-grid span {
+  letter-spacing: 0.08em;
+}
+
 h1 {
   margin-bottom: 18px;
   max-width: 780px;
   font-size: clamp(3.2rem, 6.3vw, 5.1rem);
   line-height: 0.95;
   overflow-wrap: break-word;
+}
+
+.no-break {
+  white-space: nowrap;
 }
 
 h2 {
@@ -1311,6 +1383,17 @@ p {
     line-height: 1.1;
   }
 
+  html[lang="zh-Hans"] h2 {
+    font-size: 2rem;
+    line-height: 1.12;
+  }
+
+  html[lang="zh-Hans"] .benchmark-band .section-heading h2,
+  html[lang="zh-Hans"] .issue-cover h2 {
+    font-size: 2rem;
+    line-height: 1.12;
+  }
+
   .hero {
     padding-top: 34px;
   }
@@ -1461,5 +1544,51 @@ p {
 
   .source-links {
     justify-content: flex-start;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-header {
+    min-height: 68px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .brand {
+    gap: 8px;
+  }
+
+  .brand span:last-child {
+    max-width: 132px;
+    font-size: 0.92rem;
+  }
+
+  .brand-mark {
+    width: 38px;
+    height: 38px;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  .lang-toggle {
+    min-height: 40px;
+    padding: 0 8px;
+    font-size: 0.78rem;
+  }
+
+  .icon-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  html[lang="zh-Hans"] h2 {
+    font-size: 1.95rem;
+  }
+
+  html[lang="zh-Hans"] .benchmark-band .section-heading h2,
+  html[lang="zh-Hans"] .issue-cover h2 {
+    font-size: 1.95rem;
   }
 }
