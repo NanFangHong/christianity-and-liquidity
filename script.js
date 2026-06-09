@@ -1,3 +1,9 @@
+function getHeaderOffset() {
+  return document.querySelector(".site-header")?.getBoundingClientRect().height || 76;
+}
+
+let scheduleCurrentNavUpdate = () => {};
+
 function restoreHashPosition() {
   if (!window.location.hash) return;
 
@@ -5,14 +11,14 @@ function restoreHashPosition() {
   if (!target) return;
 
   const scrollToTarget = () => {
-    const header = document.querySelector(".site-header");
-    const headerOffset = header?.getBoundingClientRect().height || 76;
+    const headerOffset = getHeaderOffset();
     const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
     const previousBehavior = document.documentElement.style.scrollBehavior;
 
     document.documentElement.style.scrollBehavior = "auto";
     window.scrollTo({ top: Math.max(0, top), left: 0, behavior: "auto" });
     document.documentElement.style.scrollBehavior = previousBehavior;
+    scheduleCurrentNavUpdate();
   };
 
   requestAnimationFrame(scrollToTarget);
@@ -26,6 +32,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const navSections = navLinks
     .map((link) => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
+  let navTicking = false;
 
   function applyFilter(filter) {
     for (const segment of segments) {
@@ -42,26 +49,43 @@ window.addEventListener("DOMContentLoaded", () => {
     segment.addEventListener("click", () => applyFilter(segment.dataset.filter));
   }
 
-  if ("IntersectionObserver" in window && navSections.length > 0) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+  function updateCurrentNav() {
+    if (navSections.length === 0) return;
 
-        if (!visible) return;
-
-        for (const link of navLinks) {
-          link.classList.toggle("is-current", link.getAttribute("href") === `#${visible.target.id}`);
-        }
-      },
-      { rootMargin: "-34% 0px -52% 0px", threshold: [0, 0.2, 0.45] }
-    );
+    const documentHeight = document.documentElement.scrollHeight;
+    const activeLine = window.scrollY + getHeaderOffset() + window.innerHeight * 0.44;
+    const isAtPageEnd = window.scrollY + window.innerHeight >= documentHeight - 3;
+    let currentSection = navSections[0];
 
     for (const section of navSections) {
-      observer.observe(section);
+      if (section.offsetTop <= activeLine) {
+        currentSection = section;
+      }
+    }
+
+    if (isAtPageEnd) {
+      currentSection = navSections[navSections.length - 1];
+    }
+
+    for (const link of navLinks) {
+      link.classList.toggle("is-current", link.getAttribute("href") === `#${currentSection.id}`);
     }
   }
+
+  scheduleCurrentNavUpdate = () => {
+    if (navTicking) return;
+    navTicking = true;
+
+    requestAnimationFrame(() => {
+      updateCurrentNav();
+      navTicking = false;
+    });
+  };
+
+  window.addEventListener("scroll", scheduleCurrentNavUpdate, { passive: true });
+  window.addEventListener("resize", scheduleCurrentNavUpdate);
+  window.addEventListener("hashchange", scheduleCurrentNavUpdate);
+  updateCurrentNav();
 
   if (window.lucide) {
     window.lucide.createIcons();
