@@ -111,4 +111,4 @@ window.addEventListener("DOMContentLoaded", () => {
   restoreHashPosition();
 });
 
-window.addEventListener("hashchange", restoreHashPosition);
+window.addEventListener("hashchange", () => restoreHashPosition());

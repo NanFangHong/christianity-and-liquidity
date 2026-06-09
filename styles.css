@@ -614,6 +614,10 @@ p {
   background: var(--cream);
 }
 
+.practice-band {
+  background: var(--paper-deep);
+}
+
 .case-card {
   max-width: 980px;
   padding: clamp(24px, 4vw, 42px);
@@ -633,6 +637,72 @@ p {
 
 .case-card p:last-child {
   margin-bottom: 0;
+}
+
+.practice-layout {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.86fr) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 72px);
+  align-items: center;
+}
+
+.practice-photo {
+  margin: 0;
+  min-width: 0;
+  background: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.practice-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.practice-photo figcaption {
+  padding: 18px 20px 20px;
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.02rem, 1.8vw, 1.25rem);
+  line-height: 1.35;
+}
+
+.practice-copy {
+  min-width: 0;
+}
+
+.practice-copy > p:not(.eyebrow) {
+  max-width: 760px;
+  color: var(--ink);
+  font-size: clamp(1.06rem, 1.5vw, 1.22rem);
+}
+
+.practice-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.practice-steps article {
+  min-height: 210px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--cream);
+}
+
+.practice-steps span {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 34px;
+  border-radius: 50%;
+  color: var(--cream);
+  background: var(--blue);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 800;
 }
 
 .segmented-control {
@@ -776,6 +846,54 @@ p {
   color: var(--cream);
 }
 
+.reading-band {
+  background: var(--ink);
+}
+
+.reading-band h2,
+.reading-band h3,
+.reading-band p {
+  color: var(--cream);
+}
+
+.reading-band .eyebrow {
+  color: var(--gold);
+}
+
+.reading-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.reading-grid article {
+  min-height: 245px;
+  padding: 22px;
+  border: 1px solid rgba(255, 250, 242, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 250, 242, 0.06);
+}
+
+.reading-grid span {
+  display: block;
+  margin-bottom: 30px;
+  color: var(--gold);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.reading-grid a {
+  text-decoration: underline;
+  text-decoration-color: rgba(198, 146, 58, 0.65);
+  text-underline-offset: 4px;
+}
+
+.reading-grid p {
+  color: rgba(255, 250, 242, 0.74);
+}
+
 .issue-band {
   background: var(--cream);
 }
@@ -887,6 +1005,7 @@ p {
 
   .hero,
   .split-copy,
+  .practice-layout,
   .issue-main,
   .friend-note,
   .minute-layout,
@@ -900,6 +1019,8 @@ p {
   .tradition-grid,
   .resource-grid,
   .plain-grid,
+  .practice-steps,
+  .reading-grid,
   .guardrail-grid,
   .primer-grid,
   .objection-grid {
@@ -931,6 +1052,8 @@ p {
   .tradition-grid,
   .resource-grid,
   .plain-grid,
+  .practice-steps,
+  .reading-grid,
   .guardrail-grid,
   .primer-grid,
   .objection-grid,
